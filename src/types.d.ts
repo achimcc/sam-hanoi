@@ -7,7 +7,15 @@ type Presenter = {
 }
 
 type Display = {
-    
+
+}
+
+type ActionType = 'MOVE' | 'DROP' | 'START' | 'RESET'
+
+type Action = {
+   type: ActionType,
+   payload: object,
+   present: Presenter
 }
 
 export type Status = 'INIT' | 'CAN_MOVE' | 'MOVING' | 'SOLVED'

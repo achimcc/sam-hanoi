@@ -1,4 +1,4 @@
-import { State, Model } from "./types";
+import { State, Model } from "../types";
 
 export const state: State = {
     init: (model: Model) => false,
