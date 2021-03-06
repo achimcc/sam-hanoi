@@ -1,23 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import model from "./sam/model";
+import actions from "./sam/actions";
 
 function App() {
+  const clickHandler = () => actions.INIT(model.present);
+
   return (
-    <div className="App">
+    <div className="App" id="app">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={clickHandler}>Click me!</button>
       </header>
     </div>
   );

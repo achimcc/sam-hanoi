@@ -6,19 +6,24 @@ const defaultTowers: TowerData = {
   RIGHT: [],
 };
 
-export const model: Model = {
+const model: Model = {
   status: "INIT",
   towers: defaultTowers,
-  present: ({ type, payload }: Data) => {
-    switch (type) {
+  present: (data: PresentData) => {
+    switch (data.type) {
       case "INIT": {
         model.towers = defaultTowers;
+        state.render(model);
+        break;
+      }
+      case "PICK": {
         break;
       }
       default: {
         break;
       }
     }
-    state.render(model);
   },
 };
+
+export default model;

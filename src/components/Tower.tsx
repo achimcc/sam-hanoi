@@ -1,25 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import { useDrop } from "react-dnd";
+import Tile from "./Tile";
 
 interface Props {
   tower: TowerType;
   tiles: Array<TileId>;
 }
 
+const TowerDiv = styled.div<{ canDrop: Boolean }>`
+  background: ${(props) => (props.canDrop ? "#3eb0ef" : "transparent")};
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1px solid black;
+`;
+
 const Tower = ({ tower, tiles }: Props) => {
   const accept: Array<ComponentType> = ["TILE"];
-  const TowerDiv = styled.div<{ canDrop: Boolean }>`
-    background: ${(props) => (props.canDrop ? "#3eb0ef" : "transparent")};
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  `;
   const [collectedProps, drop] = useDrop(() => ({
     accept,
   }));
 
-  return <TowerDiv canDrop={false} ref={drop}></TowerDiv>;
+  return (
+    <TowerDiv canDrop={false} ref={drop}>
+      {tiles.map((tileId) => (
+        <Tile key={tileId} tileId={tileId} />
+      ))}
+    </TowerDiv>
+  );
 };
 
 export default Tower;

@@ -1,5 +1,9 @@
 type RangeOf<N extends number> = Partial<TupleOf<unknown, N>>["length"];
 
+type TileId = RangeOf<5>;
+
+type TowerType = "LEFT" | "MIDDLE" | "RIGHT";
+
 type checkState = {
   (model: Model): boolean;
 };
@@ -8,7 +12,14 @@ type Display = {};
 
 type PresentType = "INIT" | "PICK" | "DROP";
 
-type ActionPick = (payload: { tile: number }, present: Presenter) => void;
+type PickPayload = { tileId: TileId };
+
+type DropPayload = {
+  tileId: TileId;
+  tower: TowerType;
+};
+
+type ActionPick = (payload: PickPayload, present: Presenter) => void;
 
 type ActionDrop = (
   payload: { tile: number; to_tower: number },
@@ -17,20 +28,27 @@ type ActionDrop = (
 
 type Status = "INIT" | "CAN_MOVE" | "MOVING" | "SOLVED";
 
-type TowerType = "LEFT" | "MIDDLE" | "RIGHT";
-
 type ComponentType = "BOARD" | "TOWER" | "TILE";
 
-type Data = {
-  type: PresentType;
-  payload?: object;
-};
+interface PresentPick {
+  type: "PICK";
+  payload: PickPayload;
+}
+
+interface PresentInit {
+  type: "INIT";
+}
+
+interface PresentDrop {
+  type: "DROP";
+  payload: DropPayload;
+}
+
+type PresentData = PresentPick | PresentInit | PresentDrop;
 
 type Presenter = {
   (data: Data): void;
 };
-
-type TileId = RangeOf<5>;
 
 type TowerData = Object<TowerType, Array<TileId>>;
 
