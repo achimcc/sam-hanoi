@@ -1,41 +1,55 @@
+type RangeOf<N extends number> = Partial<TupleOf<unknown, N>>["length"];
+
 type checkState = {
-    (model: Model) : boolean
-}
+  (model: Model): boolean;
+};
+
+type Display = {};
+
+type PresentType = "INIT" | "PICK" | "DROP";
+
+type ActionPick = (payload: { tile: number }, present: Presenter) => void;
+
+type ActionDrop = (
+  payload: { tile: number; to_tower: number },
+  present: Presenter
+) => void;
+
+type Status = "INIT" | "CAN_MOVE" | "MOVING" | "SOLVED";
+
+type TowerType = "LEFT" | "MIDDLE" | "RIGHT";
+
+type ComponentType = "BOARD" | "TOWER" | "TILE";
+
+type Data = {
+  type: PresentType;
+  payload?: object;
+};
 
 type Presenter = {
-    (model: Model, state: State): void
+  (data: Data): void;
+};
+
+type TileId = RangeOf<5>;
+
+type TowerData = Object<TowerType, Array<TileId>>;
+
+interface Model {
+  status: Status;
+  towers: Towers;
+  present: Presenter;
 }
 
-type Display = {
-
+interface State {
+  init: checkState;
+  canPick: checkState;
+  canDrop: checkState;
+  isSolved: checkState;
+  render: (model: Model) => void;
 }
 
-type ActionType = 'MOVE' | 'DROP' | 'START' | 'RESET'
-
-type Action = {
-   type: ActionType,
-   payload: object,
-   present: Presenter
+interface Actions {
+  INIT: (present: Presenter) => void;
+  PICK: ActionPick;
+  DROP: ActionDrop;
 }
-
-export type Status = 'INIT' | 'CAN_MOVE' | 'MOVING' | 'SOLVED'
-
-export interface Model {
-    status: Status,
-    towers: Object,
-    present: Presenter
-}
-
-export interface State {
-    init: checkState,
-    canMove: checkState,
-    canDrop: checkState,
-    isSolved: checkState,
-    render: (model: Model) => void
-}
-
-export interface Action {
-    type: string,
-
-}
-

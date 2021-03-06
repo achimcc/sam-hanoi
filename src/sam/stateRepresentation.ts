@@ -1,4 +1,7 @@
-import { Model } from "../types";
+import view from "../components/view";
 
-export const stateRepresentation = (model: Model) => {
-}
+const stateRepresentation = (model: Model) => {
+  const representation = view.playing(model);
+};
+
+export default stateRepresentation;
