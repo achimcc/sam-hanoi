@@ -4,7 +4,7 @@ import { useDrag } from "react-dnd";
 
 interface Props {
   tileId: TileId;
-  isOnTop: boolean;
+  canDrag: boolean;
 }
 
 const type: ComponentType = "TILE";
@@ -20,10 +20,10 @@ const TileDiv = styled.div<{ isDragging: Boolean; tileId: TileId }>`
   background: ${(props) => (props.isDragging ? "#3eb0ef" : "transparent")};
 `;
 
-const Tile = ({ tileId, isOnTop }: Props) => {
+const Tile = ({ tileId, canDrag }: Props) => {
   const [collected, drag, dragPreview] = useDrag(() => ({
     item: { tileId, type },
-    canDrag: isOnTop,
+    canDrag,
   }));
 
   return (

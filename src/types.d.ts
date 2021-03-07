@@ -21,10 +21,7 @@ type DropPayload = {
 
 type ActionPick = (payload: PickPayload, present: Presenter) => void;
 
-type ActionDrop = (
-  payload: { tile: number; to_tower: number },
-  present: Presenter
-) => void;
+type ActionDrop = (payload: DropPayload, present: Presenter) => void;
 
 type Status = "INIT" | "CAN_MOVE" | "MOVING" | "SOLVED";
 

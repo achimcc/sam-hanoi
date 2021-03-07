@@ -5,7 +5,7 @@ const view = {
   playing: (model: Model) => {
     return (
       <React.Fragment>
-        <Board towerData={model.towers} />
+        <Board model={model} />
       </React.Fragment>
     );
   },
