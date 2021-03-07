@@ -26,8 +26,8 @@ const Tower = ({ tower, tiles }: Props) => {
 
   return (
     <TowerDiv canDrop={false} ref={drop}>
-      {tiles.map((tileId) => (
-        <Tile key={tileId} tileId={tileId} />
+      {tiles.map((tileId, ind) => (
+        <Tile key={tileId} isOnTop={ind === 0} tileId={tileId} />
       ))}
     </TowerDiv>
   );
