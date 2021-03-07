@@ -1,9 +1,9 @@
 const actions: Actions = {
-  INIT: (present: Presenter) => {
-    present({ type: "INIT" });
+  INIT: (present: Presenter, payload: InitPayload) => {
+    present({ type: "INIT", payload });
   },
-  PICK: (payload: PickPayload, present: Presenter) => {},
-  DROP: (payload: DropPayload, present: Presenter) => {
+  PICK: (present: Presenter, payload: PickPayload) => {},
+  DROP: (present: Presenter, payload: DropPayload) => {
     console.log("here drop: ", payload);
   },
 };

@@ -1,11 +1,10 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import model from "./sam/model";
-import actions from "./sam/actions";
+import dispatch from "./sam/dispatch";
 
 function App() {
-  const clickHandler = () => actions.INIT(model.present);
+  const clickHandler = () =>
+    dispatch({ type: "INIT", payload: { numberTiles: 5 } });
 
   return (
     <div className="App" id="app">

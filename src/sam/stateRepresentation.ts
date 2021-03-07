@@ -1,4 +1,4 @@
-import view from "../components/view";
+import view from "./view";
 import display from "./display";
 
 const stateRepresentation = (model: Model) => {

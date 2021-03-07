@@ -10,38 +10,43 @@ type checkState = {
 
 type Display = {};
 
-type PresentType = "INIT" | "PICK" | "DROP";
-
 type PickPayload = { tileId: TileId };
+
+type InitPayload = { numberTiles: number };
 
 type DropPayload = {
   tileId: TileId;
   tower: TowerType;
 };
 
-type ActionPick = (payload: PickPayload, present: Presenter) => void;
+type Payload = PickPayload | InitPayload | DropPayload;
 
-type ActionDrop = (payload: DropPayload, present: Presenter) => void;
+type ActionPick = (present: Presenter, payload: PickPayload) => void;
+
+type ActionDrop = (present: Presenter, payload: DropPayload) => void;
+
+type DispatchType = "INIT" | "PICK" | "DROP";
 
 type Status = "INIT" | "CAN_MOVE" | "MOVING" | "SOLVED";
 
 type ComponentType = "BOARD" | "TOWER" | "TILE";
 
-interface PresentPick {
+interface PickTile {
   type: "PICK";
   payload: PickPayload;
 }
 
-interface PresentInit {
+interface InitGame {
   type: "INIT";
+  payload: InitPayload;
 }
 
-interface PresentDrop {
+interface DropTile {
   type: "DROP";
   payload: DropPayload;
 }
 
-type PresentData = PresentPick | PresentInit | PresentDrop;
+type DispatchData = PickTile | InitGame | DropTile;
 
 type Presenter = {
   (data: Data): void;
@@ -63,8 +68,8 @@ interface State {
   render: (model: Model) => void;
 }
 
-interface Actions {
-  INIT: (present: Presenter) => void;
+interface Actions extends Object<DispatchType> {
+  INIT: (present: Presenter, payload: InitPayload) => void;
   PICK: ActionPick;
   DROP: ActionDrop;
 }

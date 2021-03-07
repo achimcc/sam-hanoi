@@ -21,7 +21,7 @@ const TileDiv = styled.div<{ isDragging: Boolean; tileId: TileId }>`
 `;
 
 const Tile = ({ tileId, canDrag }: Props) => {
-  const [collected, drag, dragPreview] = useDrag(() => ({
+  const [, drag] = useDrag(() => ({
     item: { tileId, type },
     canDrag,
   }));

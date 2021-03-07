@@ -9,7 +9,7 @@ const defaultTowers: TowerData = {
 const model: Model = {
   status: "INIT",
   towers: defaultTowers,
-  present: (data: PresentData) => {
+  present: (data: DispatchData) => {
     switch (data.type) {
       case "INIT": {
         model.towers = defaultTowers;

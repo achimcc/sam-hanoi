@@ -19,7 +19,6 @@ const BoardDiv = styled.div`
 
 const Board = ({ model: { towers: towerData }, model }: Props) => {
   const towers: Array<TowerType> = ["LEFT", "MIDDLE", "RIGHT"];
-  const tiles: Array<TileId> = [0, 1, 2, 3];
   return (
     <DndProvider backend={HTML5Backend}>
       <BoardDiv>

@@ -1,9 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import { useDrop } from "react-dnd";
 import Tile from "./Tile";
-import actions from "../sam/actions";
-import model from "../sam/model";
+import dispatch from "../sam/dispatch";
 
 interface Props {
   tower: TowerType;
@@ -22,18 +20,18 @@ const TowerDiv = styled.div<{ canDrop: Boolean }>`
 `;
 
 const Tower = ({ tower, tiles }: Props) => {
-  const onDrop = (item: TileId) => {
-    const payload: DropPayload = { tileId: item, tower };
-    actions.DROP(payload, model.present);
+  const onDrop = ({ tileId }: TileId) => {
+    const payload: DropPayload = { tileId, tower };
+    dispatch({ type: "DROP", payload });
   };
-  const accept: Array<ComponentType> = ["TILE"];
-  const [collectedProps, drop] = useDrop(() => ({
-    accept,
-    onDrop,
+  const accept: ComponentType = "TILE";
+  const [, drop] = useDrop(() => ({
+    accept: "TILE",
+    drop: onDrop,
   }));
 
   return (
-    <TowerDiv canDrop={false} ref={drop}>
+    <TowerDiv ref={drop} canDrop={false}>
       {tiles.map((tileId, ind) => (
         <Tile key={tileId} canDrag={ind === 0} tileId={tileId} />
       ))}
