@@ -2,7 +2,7 @@ import stateRepresentation from "./stateRepresentation";
 import nap from "./nap";
 
 const state: State = {
-  init: (model: Model) => false,
+  init: (model: Model) => model.data.status === "INIT",
   canDrop: (model: Model, tileId: TileId, tower: TowerType) => {
     return Math.min(...model.data.towers[tower]) > tileId;
   },

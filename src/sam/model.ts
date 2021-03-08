@@ -13,6 +13,7 @@ const model: Model = {
   present: (data: DispatchData) => {
     switch (data.type) {
       case "START": {
+        if (!state.init(model)) break;
         const { tiles } = data.payload;
         model.data.tiles = tiles;
         model.data.towers = defaultTowers(tiles);
