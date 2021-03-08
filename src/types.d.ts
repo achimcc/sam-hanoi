@@ -2,6 +2,7 @@ type RangeOf<N extends number> = Partial<TupleOf<unknown, N>>["length"];
 
 type LessThan<N extends number | bigint> = intrinsic
 
+
 type TileId = LessThan<5>;
 
 type TowerType = "LEFT" | "MIDDLE" | "RIGHT";
@@ -66,9 +67,8 @@ interface TowerData {
   RIGHT: Array<TileId>;
 }
 
-interface Model {
-  
-  data: {towers: Towers, tiles: number, status: Status;};
+interface Model { 
+  data: {towers: Towers, tiles: number, status: Status, count: number};
   present: Presenter;
 }
 
