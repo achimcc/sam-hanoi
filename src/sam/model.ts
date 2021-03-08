@@ -12,15 +12,13 @@ const model: Model = {
   data: { towers: defaultTowers, tiles: 4, status: "INIT", count: 0 },
   present: (data: DispatchData) => {
     switch (data.type) {
-      case "INIT": {
+      case "START": {
         const { tiles } = data.payload;
         model.data.tiles = tiles;
         model.data.towers = defaultTowers(tiles);
         model.data.count = 0;
+        model.data.status = "PLAYING";
         state.render(model);
-        break;
-      }
-      case "PICK": {
         break;
       }
       case "DROP": {

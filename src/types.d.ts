@@ -1,9 +1,6 @@
-type RangeOf<N extends number> = Partial<TupleOf<unknown, N>>["length"];
-
 type LessThan<N extends number | bigint> = intrinsic
 
-
-type TileId = LessThan<5>;
+type TileId = LessThan<10>;
 
 type TowerType = "LEFT" | "MIDDLE" | "RIGHT";
 
@@ -12,8 +9,6 @@ type checkState = {
 };
 
 type Display = {};
-
-type PickPayload = { tileId: TileId };
 
 type InitPayload = { tiles: number };
 
@@ -24,25 +19,18 @@ type DropPayload = {
 
 type Payload = PickPayload | InitPayload | DropPayload;
 
-type ActionPick = (present: Presenter, payload: PickPayload) => void;
-
 type ActionDrop = (present: Presenter, payload: DropPayload) => void;
 
 type ActionSolve = (present) => void;
 
-type DispatchType = "INIT" | "PICK" | "DROP" | "SOLVED";
+type DispatchType = "START" | "DROP" | "SOLVED";
 
-type Status = "INIT" | "CAN_MOVE" | "MOVING" | "SOLVED";
+type Status = "INIT" | "PLAYING" | "SOLVED";
 
 type ComponentType = "BOARD" | "TOWER" | "TILE";
 
-interface PickTile {
-  type: "PICK";
-  payload: PickPayload;
-}
-
 interface InitGame {
-  type: "INIT";
+  type: "START";
   payload: InitPayload;
 }
 
@@ -55,7 +43,7 @@ interface SolveGame {
   type: "SOLVED";
 }
 
-type DispatchData = PickTile | InitGame | DropTile | SolveGame;
+type DispatchData = InitGame | DropTile | SolveGame;
 
 type Presenter = {
   (data: Data): void;
@@ -82,15 +70,13 @@ type checkDrop = {
 
 interface State {
   init: checkState;
-  canPick: checkState;
   canDrop: checkDrop;
   isSolved: checkState;
   render: (model: Model) => void;
 }
 
 interface Actions extends Object<DispatchType> {
-  INIT: (present: Presenter, payload: InitPayload) => void;
-  PICK: ActionPick;
+  START: (present: Presenter, payload: InitPayload) => void;
   DROP: ActionDrop;
   SOLVED: ActionSolve;
 }
