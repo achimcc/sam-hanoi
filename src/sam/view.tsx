@@ -9,9 +9,7 @@ const view = {
       </React.Fragment>
     );
   },
-  solved: (model: Model) => {
-    <React.Fragment>Solved!</React.Fragment>;
-  },
+  solved: (model: Model) => <React.Fragment>Solved!</React.Fragment>,
 };
 
 export default view;
