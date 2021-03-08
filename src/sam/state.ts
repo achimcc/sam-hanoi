@@ -5,7 +5,9 @@ const state: State = {
   init: (model: Model) => false,
   canPick: (model: Model) => false,
   canDrop: (model: Model) => false,
-  isSolved: (model: Model) => false,
+  isSolved: (model: Model) => {
+    return model.data.towers["RIGHT"].length === model.data.tiles;
+  },
   render: (model: Model) => {
     stateRepresentation(model);
     nap(model);

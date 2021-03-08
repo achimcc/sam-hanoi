@@ -1,7 +1,7 @@
 import actions from "./actions";
 import model from "./model";
 
-const dispatch = ({ type, payload }: DispatchData) =>
-  actions[type](model.present, payload as any);
+const dispatch = (data: DispatchData) =>
+  actions[data.type](model.present, data as any);
 
 export default dispatch;

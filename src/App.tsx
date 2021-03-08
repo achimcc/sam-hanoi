@@ -3,8 +3,7 @@ import "./App.css";
 import dispatch from "./sam/dispatch";
 
 function App() {
-  const clickHandler = () =>
-    dispatch({ type: "INIT", payload: { numberTiles: 5 } });
+  const clickHandler = () => dispatch({ type: "INIT", payload: { tiles: 4 } });
 
   return (
     <div className="App" id="app">

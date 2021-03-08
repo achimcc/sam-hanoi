@@ -1,6 +1,8 @@
 type RangeOf<N extends number> = Partial<TupleOf<unknown, N>>["length"];
 
-type TileId = RangeOf<5>;
+type LessThan<N extends number | bigint> = intrinsic
+
+type TileId = LessThan<5>;
 
 type TowerType = "LEFT" | "MIDDLE" | "RIGHT";
 
@@ -12,7 +14,7 @@ type Display = {};
 
 type PickPayload = { tileId: TileId };
 
-type InitPayload = { numberTiles: number };
+type InitPayload = { tiles: number };
 
 type DropPayload = {
   tileId: TileId;
@@ -25,7 +27,9 @@ type ActionPick = (present: Presenter, payload: PickPayload) => void;
 
 type ActionDrop = (present: Presenter, payload: DropPayload) => void;
 
-type DispatchType = "INIT" | "PICK" | "DROP";
+type ActionSolve = (present) => void;
+
+type DispatchType = "INIT" | "PICK" | "DROP" | "SOLVED";
 
 type Status = "INIT" | "CAN_MOVE" | "MOVING" | "SOLVED";
 
@@ -46,17 +50,25 @@ interface DropTile {
   payload: DropPayload;
 }
 
-type DispatchData = PickTile | InitGame | DropTile;
+interface SolveGame {
+  type: "SOLVED";
+}
+
+type DispatchData = PickTile | InitGame | DropTile | SolveGame;
 
 type Presenter = {
   (data: Data): void;
 };
 
-type TowerData = Object<TowerType, Array<TileId>>;
+interface TowerData {
+  LEFT: Array<TileId>;
+  MIDDLE: Array<TileId>;
+  RIGHT: Array<TileId>;
+}
 
 interface Model {
-  status: Status;
-  towers: Towers;
+  
+  data: {towers: Towers, tiles: number, status: Status;};
   present: Presenter;
 }
 
@@ -72,4 +84,5 @@ interface Actions extends Object<DispatchType> {
   INIT: (present: Presenter, payload: InitPayload) => void;
   PICK: ActionPick;
   DROP: ActionDrop;
+  SOLVED: ActionSolve;
 }

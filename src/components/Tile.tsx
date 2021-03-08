@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDrag } from "react-dnd";
+import { DragSourceMonitor, useDrag } from "react-dnd";
 
 interface Props {
   tileId: TileId;
@@ -21,10 +21,15 @@ const TileDiv = styled.div<{ isDragging: Boolean; tileId: TileId }>`
 `;
 
 const Tile = ({ tileId, canDrag }: Props) => {
-  const [, drag] = useDrag(() => ({
+  const [monitor, drag] = useDrag(() => ({
     item: { tileId, type },
-    canDrag,
+    canDrag: (monitor) => monitor.canDrag(),
+    collect: (monitor) => {
+      return monitor;
+    },
   }));
+
+  monitor.canDrag = () => canDrag;
 
   return (
     <TileDiv isDragging={false} tileId={tileId} ref={drag}>

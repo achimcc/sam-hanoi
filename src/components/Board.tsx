@@ -17,18 +17,19 @@ const BoardDiv = styled.div`
   flex-direction: row;
 `;
 
-const Board = ({ model: { towers: towerData }, model }: Props) => {
+const Board = ({
+  model: {
+    data: { towers: towerData },
+  },
+  model,
+}: Props) => {
   const towers: Array<TowerType> = ["LEFT", "MIDDLE", "RIGHT"];
+  console.log("towerData: ", towerData);
   return (
     <DndProvider backend={HTML5Backend}>
       <BoardDiv>
         {towers.map((tower) => (
-          <Tower
-            tower={tower}
-            key={tower}
-            tiles={towerData[tower]}
-            model={model}
-          />
+          <Tower tower={tower} key={tower} tiles={towerData[tower]} />
         ))}
       </BoardDiv>
     </DndProvider>

@@ -6,7 +6,6 @@ import dispatch from "../sam/dispatch";
 interface Props {
   tower: TowerType;
   tiles: Array<TileId>;
-  model: Model;
 }
 
 const TowerDiv = styled.div<{ canDrop: Boolean }>`
@@ -29,6 +28,7 @@ const Tower = ({ tower, tiles }: Props) => {
     accept: "TILE",
     drop: onDrop,
   }));
+  console.log("Tower", tower, tiles);
 
   return (
     <TowerDiv ref={drop} canDrop={false}>
