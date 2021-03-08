@@ -1,9 +1,8 @@
 import dispatch from "./dispatch";
+import state from "./state";
 
 const nap = (model: Model) => {
-  console.log("nap", model.data.towers["RIGHT"].length, model.data.tiles);
-  if (model.data.towers["RIGHT"].length === model.data.tiles) {
-    console.log("Solved!");
+  if (state.isSolved(model)) {
     dispatch({ type: "SOLVED" });
   }
 };

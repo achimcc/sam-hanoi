@@ -28,7 +28,6 @@ const Tower = ({ tower, tiles }: Props) => {
     accept: "TILE",
     drop: onDrop,
   }));
-  console.log("Tower", tower, tiles);
 
   return (
     <TowerDiv ref={drop} canDrop={false}>

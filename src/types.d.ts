@@ -72,10 +72,18 @@ interface Model {
   present: Presenter;
 }
 
+type checkState = {
+  (model: Model): boolean;
+};
+
+type checkDrop = {
+  (model: Model, tileId: TileId, tower: TowerType): boolean;
+}
+
 interface State {
   init: checkState;
   canPick: checkState;
-  canDrop: checkState;
+  canDrop: checkDrop;
   isSolved: checkState;
   render: (model: Model) => void;
 }

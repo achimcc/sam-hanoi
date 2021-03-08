@@ -25,7 +25,7 @@ const model: Model = {
       }
       case "DROP": {
         const { tower, tileId } = data.payload;
-        if (Math.min(...model.data.towers[tower]) <= tileId) break;
+        if (!state.canDrop(model, tileId, tower)) break;
         for (var towerId in model.data.towers)
           if (model.data.towers[towerId].includes(tileId))
             model.data.towers[towerId].shift();
@@ -35,6 +35,7 @@ const model: Model = {
         break;
       }
       case "SOLVED": {
+        if (!state.isSolved(model)) break;
         model.data.status = "SOLVED";
         state.render(model);
         break;

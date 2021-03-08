@@ -24,7 +24,6 @@ const Board = ({
   model,
 }: Props) => {
   const towers: Array<TowerType> = ["LEFT", "MIDDLE", "RIGHT"];
-  console.log("towerData: ", towerData);
   return (
     <DndProvider backend={HTML5Backend}>
       <BoardDiv>
