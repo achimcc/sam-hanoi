@@ -1,7 +1,7 @@
 import actions from "./actions";
 import model from "./model";
 
-const dispatch = (data: DispatchData) =>
-  actions[data.type](model.present, data as any);
+const dispatch = (intent: Intent) =>
+  actions[intent.type](model.present, intent);
 
 export default dispatch;

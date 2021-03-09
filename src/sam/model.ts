@@ -10,11 +10,11 @@ const defaultTowers = (tiles: number) =>
 
 const model: Model = {
   data: { towers: defaultTowers, tiles: 4, status: "INIT", count: 0 },
-  present: (data: DispatchData) => {
-    switch (data.type) {
+  present: (intent: Intent) => {
+    switch (intent.type) {
       case "START": {
         if (!state.init(model)) break;
-        const { tiles } = data.payload;
+        const { tiles } = intent.payload;
         model.data.tiles = tiles;
         model.data.towers = defaultTowers(tiles);
         model.data.count = 0;
@@ -23,7 +23,7 @@ const model: Model = {
         break;
       }
       case "DROP": {
-        const { tower, tileId } = data.payload;
+        const { tower, tileId } = intent.payload;
         if (!state.canDrop(model, tileId, tower)) break;
         for (var towerId in model.data.towers)
           if (model.data.towers[towerId].includes(tileId))
@@ -33,7 +33,7 @@ const model: Model = {
         state.render(model);
         break;
       }
-      case "SOLVED": {
+      case "SOLVE": {
         if (!state.isSolved(model)) break;
         model.data.status = "SOLVED";
         state.render(model);

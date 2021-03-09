@@ -19,31 +19,31 @@ type DropPayload = {
 
 type Payload = PickPayload | InitPayload | DropPayload;
 
-type ActionDrop = (present: Presenter, payload: DropPayload) => void;
+type ActionDrop = (present: Presenter, intent: Intent) => void;
 
 type ActionSolve = (present) => void;
 
-type DispatchType = "START" | "DROP" | "SOLVED";
+type IntentType = "START" | "DROP" | "SOLVE";
 
 type Status = "INIT" | "PLAYING" | "SOLVED";
 
 type ComponentType = "BOARD" | "TOWER" | "TILE";
 
-interface InitGame {
+interface InitIntent {
   type: "START";
   payload: InitPayload;
 }
 
-interface DropTile {
+interface DropIntent {
   type: "DROP";
   payload: DropPayload;
 }
 
-interface SolveGame {
-  type: "SOLVED";
+interface SolveIntent {
+  type: "SOLVE";
 }
 
-type DispatchData = InitGame | DropTile | SolveGame;
+type Intent = InitIntent | DropIntent | SolveIntent;
 
 type Presenter = {
   (data: Data): void;
@@ -76,7 +76,7 @@ interface State {
 }
 
 interface Actions extends Object<DispatchType> {
-  START: (present: Presenter, payload: InitPayload) => void;
+  START: (present: Presenter, intent: Intent) => void;
   DROP: ActionDrop;
-  SOLVED: ActionSolve;
+  SOLVE: ActionSolve;
 }

@@ -3,7 +3,7 @@ import state from "./state";
 
 const nap = (model: Model) => {
   if (state.isSolved(model)) {
-    dispatch({ type: "SOLVED" });
+    dispatch({ type: "SOLVE" });
   }
 };
 

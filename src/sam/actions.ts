@@ -1,11 +1,11 @@
 const actions: Actions = {
-  START: (present: Presenter, payload: InitPayload) => {
-    present(payload);
+  START: (present: Presenter, intent: Intent) => {
+    present(intent);
   },
-  DROP: (present: Presenter, payload: DropPayload) => {
-    present(payload);
+  DROP: (present: Presenter, intent: Intent) => {
+    present(intent);
   },
-  SOLVED: (present) => {},
+  SOLVE: (present) => {},
 };
 
 export default actions;
