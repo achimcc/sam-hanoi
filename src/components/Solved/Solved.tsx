@@ -19,8 +19,8 @@ interface Props {
 let midi;
 
 const load = async (player: any) => {
-  player.stop();
   midi = await fetch("elise.mid").then((response) => response.arrayBuffer());
+  console.log("midi: ", midi);
   player.loadArrayBuffer(midi);
 };
 
@@ -30,7 +30,6 @@ const Solved = ({ model }: Props) => {
   const append = (nr: number) => (nr > 1 ? "s" : "");
   const player = new MidiPlayer.Player();
   const play = async () => {
-    await load(player);
     player.play();
   };
 
