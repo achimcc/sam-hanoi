@@ -8,7 +8,9 @@ const WelcomeDiv = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 const Init = () => {
@@ -18,8 +20,9 @@ const Init = () => {
     dispatch({ type: "TILES", payload: { nrTiles } });
   return (
     <WelcomeDiv>
-      Welcome
+      <div>Welcome!</div>
       <div>
+        Please select the number of Tiles: &nbsp;
         <Select onChange={changeHandler}></Select>
       </div>
       <div>
