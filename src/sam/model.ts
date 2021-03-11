@@ -1,12 +1,11 @@
-import { getJSDocReturnTag } from "typescript";
 import state from "./state";
 
 const defaultTowers = (tiles: number) =>
-  <TowerData>{
+  ({
     LEFT: Array.from(Array(tiles).keys()),
     MIDDLE: [],
     RIGHT: [],
-  };
+  } as TowerData);
 
 const model: Model = {
   data: { towers: defaultTowers(0), nrTiles: 0, status: "INIT", count: 0 },

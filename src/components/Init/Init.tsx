@@ -14,7 +14,6 @@ const WelcomeDiv = styled.div`
 `;
 
 const Init = () => {
-  const towers: Array<TowerType> = ["LEFT", "MIDDLE", "RIGHT"];
   const start = () => dispatch({ type: "START" });
   const changeHandler = (nrTiles: number) =>
     dispatch({ type: "TILES", payload: { nrTiles } });

@@ -1,14 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import dispatch from "../../sam/dispatch";
-
-const WelcomeDiv = styled.div`
-  color: rgba(255, 255, 255, 0.75);
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: row;
-`;
 
 interface Props {
   onChange: (nrTiles: number) => void;

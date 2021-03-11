@@ -24,7 +24,6 @@ const Tower = ({ tower, tiles, nrTiles }: Props) => {
     const payload: DropPayload = { tileId, tower };
     dispatch({ type: "DROP", payload });
   };
-  const accept: ComponentType = "TILE";
   const [, drop] = useDrop(() => ({
     accept: "TILE",
     drop: onDrop,

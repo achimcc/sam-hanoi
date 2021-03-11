@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-import { DragSourceMonitor, useDrag } from "react-dnd";
+import { useDrag } from "react-dnd";
 
 interface Props {
   tileId: TileId;
