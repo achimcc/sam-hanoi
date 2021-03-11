@@ -29,7 +29,7 @@ const Solved = ({ model }: Props) => {
   const { count: moves, nrTiles: tiles } = model.data;
   const append = (nr: number) => (nr > 1 ? "s" : "");
   const player = new MidiPlayer.Player();
-  const play = async () => {
+  const play = () => {
     player.play();
   };
 
