@@ -5,7 +5,6 @@ interface Props {
 }
 
 const Select = ({ onChange }: Props) => {
-  const towers: Array<TowerType> = ["LEFT", "MIDDLE", "RIGHT"];
   const changeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nrTiles = parseInt(e.target.value);
     onChange(nrTiles);
