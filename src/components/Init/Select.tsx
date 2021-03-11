@@ -11,7 +11,7 @@ const Select = ({ onChange }: Props) => {
   };
   return (
     <select onChange={changeHandler} id="cars">
-      {Array.from(Array(10).keys()).map((nr) => (
+      {Array.from(Array(9).keys()).map((nr) => (
         <option value={nr} key={nr}>
           {nr}
         </option>

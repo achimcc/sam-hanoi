@@ -10,16 +10,14 @@ interface Props {
 const type: ComponentType = "TILE";
 
 const TileDiv = styled.div<{
-  isDragging: Boolean;
   tileId: TileId;
   nrTiles: number;
 }>`
   border: 2px solid #3eb0ef;
   border-radius: 10px/40%;
-  color: black;
+  color: #3eb0ef;
   margin: 5px;
-  width: ${(props) => (props.tileId + 10 / props.nrTiles) * 10}%;
-  background: ${(props) => (props.isDragging ? "#3eb0ef" : "transparent")};
+  width: ${(props) => (props.tileId + 5 / props.nrTiles) * 10}%;
 `;
 
 const Tile = ({ tileId, canDrag, nrTiles }: Props) => {
@@ -34,7 +32,7 @@ const Tile = ({ tileId, canDrag, nrTiles }: Props) => {
   monitor.canDrag = () => canDrag;
 
   return (
-    <TileDiv isDragging={false} tileId={tileId} ref={drag} nrTiles={nrTiles}>
+    <TileDiv tileId={tileId} ref={drag} nrTiles={nrTiles}>
       {tileId}
     </TileDiv>
   );
