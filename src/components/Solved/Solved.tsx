@@ -28,8 +28,11 @@ const Solved = ({ model }: Props) => {
   const onReset = () => dispatch({ type: "INIT" });
   const { count: moves, nrTiles: tiles } = model.data;
   const append = (nr: number) => (nr > 1 ? "s" : "");
-  const player = new MidiPlayer.Player();
+  const player = new MidiPlayer.Player((event: any) => {
+    console.log(event);
+  });
   const play = () => {
+    console.log("Playing!");
     player.play();
   };
 
