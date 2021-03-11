@@ -31,6 +31,9 @@ const Solved = ({ model }: Props) => {
   const player = new MidiPlayer.Player((event: any) => {
     console.log(event);
   });
+  const instrumentUrl =
+    "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/FatBoy/acoustic_grand_piano-mp3.js";
+
   const play = () => {
     console.log("Playing!");
     player.play();
