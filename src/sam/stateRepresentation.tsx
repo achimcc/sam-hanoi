@@ -6,6 +6,9 @@ const stateRepresentation = (model: Model) => {
   let representation = <div> Playing</div>;
   switch (model.data.status) {
     case "INIT":
+      representation = view.init();
+      break;
+    case "PLAYING":
       representation = view.playing(model);
       break;
     case "SOLVED":

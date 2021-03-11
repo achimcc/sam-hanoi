@@ -9,17 +9,16 @@ interface Props {
 }
 
 const BoardDiv = styled.div`
-  border: 2px solid #3eb0ef;
   color: rgba(255, 255, 255, 0.75);
   display: flex;
-  height: 70vh;
-  margin: 10vh;
+  width: 100%;
+  height: 100%;
   flex-direction: row;
 `;
 
 const Board = ({
   model: {
-    data: { towers: towerData },
+    data: { towers: towerData, nrTiles },
   },
   model,
 }: Props) => {
@@ -28,7 +27,12 @@ const Board = ({
     <DndProvider backend={HTML5Backend}>
       <BoardDiv>
         {towers.map((tower) => (
-          <Tower tower={tower} key={tower} tiles={towerData[tower]} />
+          <Tower
+            tower={tower}
+            key={tower}
+            tiles={towerData[tower]}
+            nrTiles={nrTiles}
+          />
         ))}
       </BoardDiv>
     </DndProvider>

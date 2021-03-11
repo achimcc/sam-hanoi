@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { useDrop } from "react-dnd";
 import Tile from "./Tile";
-import dispatch from "../sam/dispatch";
+import dispatch from "../../sam/dispatch";
 
 interface Props {
   tower: TowerType;
   tiles: Array<TileId>;
+  nrTiles: number;
 }
 
 const TowerDiv = styled.div<{ canDrop: Boolean }>`
@@ -18,7 +19,7 @@ const TowerDiv = styled.div<{ canDrop: Boolean }>`
   border: 1px solid black;
 `;
 
-const Tower = ({ tower, tiles }: Props) => {
+const Tower = ({ tower, tiles, nrTiles }: Props) => {
   const onDrop = ({ tileId }: TileId) => {
     const payload: DropPayload = { tileId, tower };
     dispatch({ type: "DROP", payload });
@@ -32,7 +33,12 @@ const Tower = ({ tower, tiles }: Props) => {
   return (
     <TowerDiv ref={drop} canDrop={false}>
       {tiles.map((tileId, ind) => (
-        <Tile key={tileId} canDrag={ind === 0} tileId={tileId} />
+        <Tile
+          key={tileId}
+          canDrag={ind === 0}
+          tileId={tileId}
+          nrTiles={nrTiles}
+        />
       ))}
     </TowerDiv>
   );

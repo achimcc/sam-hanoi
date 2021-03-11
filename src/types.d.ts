@@ -10,28 +10,36 @@ type checkState = {
 
 type Display = {};
 
-type InitPayload = { tiles: number };
+type TilesPayload = { nrTiles: number };
 
 type DropPayload = {
   tileId: TileId;
   tower: TowerType;
 };
 
-type Payload = PickPayload | InitPayload | DropPayload;
+type Payload = PickPayload | TilesPayload | DropPayload;
 
 type ActionDrop = (present: Presenter, intent: Intent) => void;
 
-type ActionSolve = (present) => void;
+type ActionSolve = (present: Presenter, intent: Intent) => void;
 
-type IntentType = "START" | "DROP" | "SOLVE";
+type IntentType = "INIT" | "TILES" | "START" | "DROP" | "SOLVE";
 
 type Status = "INIT" | "PLAYING" | "SOLVED";
 
 type ComponentType = "BOARD" | "TOWER" | "TILE";
 
 interface InitIntent {
-  type: "START";
+  type: "INIT";
+}
+
+interface TilesIntent {
+  type: "TILES";
   payload: InitPayload;
+}
+
+interface StartIntent {
+  type: "START";
 }
 
 interface DropIntent {
@@ -43,7 +51,7 @@ interface SolveIntent {
   type: "SOLVE";
 }
 
-type Intent = InitIntent | DropIntent | SolveIntent;
+type Intent = InitIntent | TilesIntent | StartIntent | DropIntent | SolveIntent;
 
 type Presenter = {
   (data: Data): void;
@@ -56,7 +64,7 @@ interface TowerData {
 }
 
 interface Model { 
-  data: {towers: Towers, tiles: number, status: Status, count: number};
+  data: {towers: Towers, nrTiles: number, status: Status, count: number};
   present: Presenter;
 }
 
@@ -70,12 +78,15 @@ type checkDrop = {
 
 interface State {
   init: checkState;
+  ready: checkState;
   canDrop: checkDrop;
   isSolved: checkState;
   render: (model: Model) => void;
 }
 
 interface Actions extends Object<DispatchType> {
+  INIT: (present: Presenter, intent: Intent) => void;
+  TILES: (present: Presenter, intent: Intent) => void;
   START: (present: Presenter, intent: Intent) => void;
   DROP: ActionDrop;
   SOLVE: ActionSolve;

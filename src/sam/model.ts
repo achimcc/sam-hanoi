@@ -9,14 +9,24 @@ const defaultTowers = (tiles: number) =>
   };
 
 const model: Model = {
-  data: { towers: defaultTowers, tiles: 4, status: "INIT", count: 0 },
+  data: { towers: defaultTowers(0), nrTiles: 0, status: "INIT", count: 0 },
   present: (intent: Intent) => {
     switch (intent.type) {
-      case "START": {
+      case "INIT": {
+        model.data.status = "INIT";
+        console.log("model: ", model);
+        state.render(model);
+        break;
+      }
+      case "TILES": {
         if (!state.init(model)) break;
-        const { tiles } = intent.payload;
-        model.data.tiles = tiles;
-        model.data.towers = defaultTowers(tiles);
+        console.log("TILES", intent);
+        model.data.nrTiles = intent.payload.nrTiles;
+        break;
+      }
+      case "START": {
+        if (!state.ready(model)) break;
+        model.data.towers = defaultTowers(model.data.nrTiles);
         model.data.count = 0;
         model.data.status = "PLAYING";
         state.render(model);
@@ -35,6 +45,7 @@ const model: Model = {
       }
       case "SOLVE": {
         if (!state.isSolved(model)) break;
+        console.log("solved!");
         model.data.status = "SOLVED";
         state.render(model);
         break;

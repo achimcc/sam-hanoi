@@ -3,11 +3,11 @@ import "./App.css";
 import dispatch from "./sam/dispatch";
 
 function App() {
-  const clickHandler = () => dispatch({ type: "START", payload: { tiles: 8 } });
+  const clickHandler = () => dispatch({ type: "INIT" });
 
   return (
-    <div className="App" id="app">
-      <header className="App-header">
+    <div className="App">
+      <header className="App-header" id="app">
         <button onClick={clickHandler}>Click me!</button>
       </header>
     </div>
