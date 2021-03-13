@@ -19,9 +19,7 @@ type DropPayload = {
 
 type Payload = PickPayload | TilesPayload | DropPayload;
 
-type ActionDrop = (present: Presenter, intent: Intent) => void;
-
-type ActionSolve = (present: Presenter, intent: Intent) => void;
+type Action = (present: Presenter, intent: Intent) => void;
 
 type IntentType = "INIT" | "TILES" | "START" | "DROP" | "SOLVE";
 
@@ -85,9 +83,9 @@ interface State {
 }
 
 interface Actions extends Object<DispatchType> {
-  INIT: (present: Presenter, intent: Intent) => void;
-  TILES: (present: Presenter, intent: Intent) => void;
-  START: (present: Presenter, intent: Intent) => void;
-  DROP: ActionDrop;
-  SOLVE: ActionSolve;
+  INIT: Action;
+  TILES: Action;
+  START: Action;
+  DROP: Action;
+  SOLVE: Action;
 }

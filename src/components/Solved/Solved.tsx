@@ -37,9 +37,6 @@ const Solved = ({ model }: Props) => {
       <div>
         <button onClick={onReset}>Reset</button>
       </div>
-      <div>
-        <button>Start</button>
-      </div>
     </SolvedDiv>
   );
 };
