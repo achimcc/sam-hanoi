@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import dispatch from "../../sam/dispatch";
-import MidiPlayer from "midi-player-ts";
+import dispatch from "../../sam/Actions/dispatch";
 
 const SolvedDiv = styled.div`
   color: rgba(255, 255, 255, 0.75);
@@ -28,26 +27,10 @@ const Solved = ({ model }: Props) => {
   const onReset = () => dispatch({ type: "INIT" });
   const { count: moves, nrTiles: tiles } = model.data;
   const append = (nr: number) => (nr > 1 ? "s" : "");
-  const player = new MidiPlayer.Player((event: any) => {
-    console.log(event);
-  });
-  const instrumentUrl =
-    "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/FatBoy/acoustic_grand_piano-mp3.js";
-
-  const play = () => {
-    console.log("Playing!");
-    player.play();
-  };
 
   return (
     <SolvedDiv>
       <div>Solved!</div>
-      <div>
-        <button onClick={() => load(player)}>Load</button>
-      </div>
-      <div>
-        <button onClick={play}>Play</button>
-      </div>
       <div>{`It took you ${moves} move${append(
         moves
       )} to solve the Problem with ${tiles} tile${append(tiles)}.`}</div>

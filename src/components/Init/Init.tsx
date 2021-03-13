@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import dispatch from "../../sam/dispatch";
+import dispatch from "../../sam/Actions/dispatch";
 import Select from "./Select";
 
 const WelcomeDiv = styled.div`

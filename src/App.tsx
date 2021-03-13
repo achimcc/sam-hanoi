@@ -1,4 +1,4 @@
-import dispatch from "./sam/dispatch";
+import dispatch from "./sam/Actions/dispatch";
 import styled from "styled-components";
 import { useEffect } from "react";
 

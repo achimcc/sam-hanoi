@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDrop } from "react-dnd";
 import Tile from "./Tile";
-import dispatch from "../../sam/dispatch";
+import dispatch from "../../sam/Actions/dispatch";
 
 interface Props {
   tower: TowerType;

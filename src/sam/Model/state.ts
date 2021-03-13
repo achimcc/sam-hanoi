@@ -1,4 +1,4 @@
-import stateRepresentation from "./stateRepresentation";
+import stateRepresentation from "../View/stateRepresentation";
 import nap from "./nap";
 
 const state: State = {

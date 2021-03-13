@@ -1,4 +1,4 @@
-import dispatch from "./dispatch";
+import dispatch from "../Actions/dispatch";
 import state from "./state";
 
 const nap = (model: Model) => {
