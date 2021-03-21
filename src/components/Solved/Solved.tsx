@@ -19,7 +19,6 @@ let midi;
 
 const load = async (player: any) => {
   midi = await fetch("elise.mid").then((response) => response.arrayBuffer());
-  console.log("midi: ", midi);
   player.loadArrayBuffer(midi);
 };
 

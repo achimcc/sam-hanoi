@@ -13,13 +13,11 @@ const model: Model = {
     switch (intent.type) {
       case "INIT": {
         model.data.status = "INIT";
-        console.log("model: ", model);
         state.render(model);
         break;
       }
       case "TILES": {
         if (!state.init(model)) break;
-        console.log("TILES", intent);
         model.data.nrTiles = intent.payload.nrTiles;
         break;
       }
@@ -44,7 +42,6 @@ const model: Model = {
       }
       case "SOLVE": {
         if (!state.isSolved(model)) break;
-        console.log("solved!");
         model.data.status = "SOLVED";
         state.render(model);
         break;
