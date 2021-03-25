@@ -6,12 +6,12 @@ const AppDiv = styled.div`
   background-color: #282c34;
   position: fixed;
   text-align: center;
-  width: 80vw;
-  height: 80vh;
-  left: 20%;
-  top: 20%;
-  margin-top: -10vh;
-  margin-left: -10vw;
+  width: 90vw;
+  height: 90vh;
+  left: 10%;
+  top: 10%;
+  margin-top: -5vh;
+  margin-left: -5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
