@@ -15,13 +15,6 @@ interface Props {
   model: Model;
 }
 
-let midi;
-
-const load = async (player: any) => {
-  midi = await fetch("elise.mid").then((response) => response.arrayBuffer());
-  player.loadArrayBuffer(midi);
-};
-
 const Solved = ({ model }: Props) => {
   const onReset = () => dispatch({ type: "INIT" });
   const { count: moves, nrTiles: tiles } = model.data;
