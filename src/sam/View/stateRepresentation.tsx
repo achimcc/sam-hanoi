@@ -2,7 +2,7 @@ import React from "react";
 import view from "./view";
 import display from "./display";
 
-const stateRepresentation = (model: Model) => {
+const stateRepresentation = (model: Model): void => {
   let representation = <div> Playing</div>;
   switch (model.data.status) {
     case "INIT":

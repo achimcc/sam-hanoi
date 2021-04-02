@@ -9,7 +9,7 @@ const defaultTowers = (tiles: number) =>
 
 const model: Model = {
   data: { towers: defaultTowers(0), nrTiles: 0, status: "INIT", count: 0 },
-  present: (intent: Intent) => {
+  present: (intent: Intent): void => {
     switch (intent.type) {
       case "INIT": {
         model.data.status = "INIT";
